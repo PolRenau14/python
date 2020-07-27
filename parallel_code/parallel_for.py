@@ -24,11 +24,11 @@ columns = ['A','B', 'C']
 data = np.array([np.arange(10)]*3).T
 df = pd.DataFrame(data, index=index, columns=columns)
 
-# paralelize calculations into two groups:
+# parallelize calculations into two groups:
 # par and impar elements of DataFrame
 start = time.time()
 results = Parallel(n_jobs=num_cores)(delayed(myFunction)(i) for i in [0,1])
-# As we are working on DataFrame objects, the paralelize function returns a list
+# As we are working on DataFrame objects, the parallelize function returns a list
 # where every position is  one of Dataframes, then we should concatene them
 results = pd.concat(results)
 end = time.time()
